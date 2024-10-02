@@ -9,10 +9,8 @@ import cloudflare from '@astrojs/cloudflare';
 export default defineConfig({
   integrations: [tailwind()],
   output: 'server',
-
   prefetch: {
     defaultStrategy: 'viewport'
   },
-
   adapter: cloudflare()
 });

@@ -13,7 +13,5 @@ export function getStaticPaths() {
   return PAGES.map((_, idx) => ({ params: { slide_index: idx + 1 } }));
 }
 
-const slideIndex = Number(Astro.params.slide_index);
-
-return Astro.rewrite(PAGES[slideIndex - 1]);
+return Astro.rewrite(PAGES[Number(Astro.params.slide_index) - 1]);
 ---
