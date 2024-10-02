@@ -1,0 +1,16 @@
+---
+type Props = {
+  position?: "top" | "center";
+};
+
+const { position = "center" } = Astro.props;
+---
+
+<h1
+  transition:animate="slide"
+  class={["text-2xl font-bold", position === "top" ? "" : ""]
+    .filter((v) => v.length)
+    .join(" ")}
+>
+  <slot />
+</h1>

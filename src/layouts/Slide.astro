@@ -1,0 +1,45 @@
+---
+import { ViewTransitions } from "astro:transitions";
+import Heading from "../components/Heading.astro";
+
+type Props = {
+	title?: string;
+};
+
+const { title } = Astro.props;
+
+const currentSlideNumber = parseInt(Astro.url.pathname.split("-")[1]);
+const currentSlide =
+  currentSlideNumber && currentSlideNumber > 0 ? currentSlideNumber : 1;
+
+const nextSlide = currentSlide + 1;
+const prevSlide = currentSlide - 1;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Profiling</title>
+	<ViewTransitions />
+  </head>
+  <body>
+    <div class="h-screen w-screen flex flex-col items-center justify-between p-4">
+	{ title ? (
+	  <Heading>{title}</Heading>
+	) : <div></div>}
+		<div transition:animate="fade" class="">
+			<slot />
+		</div>
+      <div class="flex justify-between w-fit gap-2">
+		{ prevSlide > 0 && (
+        <a href=`/slide-${prevSlide}` class="text-sm text-gray-500">Previous</a>
+		)}
+
+        <a href=`/slide-${nextSlide}` class="text-sm text-gray-500">Next</a>
+      </div>
+    </div>
+  </body>
+</html>
