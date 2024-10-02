@@ -1,0 +1,19 @@
+---
+export const PAGES = [
+  "/intro",
+  "/what-is-profiling",
+  "/what-is-profiling-2",
+  "/how-does-profiling-work",
+  "/how-does-profiling-work-2",
+  "/what-does-profiling-look-like",
+  "/diy",
+];
+
+export function getStaticPaths() {
+  return PAGES.map((_, idx) => ({ params: { slide_index: idx + 1 } }));
+}
+
+const slideIndex = Number(Astro.params.slide_index);
+
+return Astro.rewrite(PAGES[slideIndex - 1]);
+---

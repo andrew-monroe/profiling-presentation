@@ -1,19 +1,20 @@
 ---
 import { ViewTransitions } from "astro:transitions";
 import Heading from "../components/Heading.astro";
+import { PAGES } from "../pages/slides/[slide_index].astro";
 
 type Props = {
-	title?: string;
+  title?: string;
 };
 
 const { title } = Astro.props;
 
-const currentSlideNumber = parseInt(Astro.url.pathname.split("-")[1]);
-const currentSlide =
-  currentSlideNumber && currentSlideNumber > 0 ? currentSlideNumber : 1;
+const currentSlideIndex =
+  PAGES.findIndex((page) => page === Astro.url.pathname) + 1;
 
-const nextSlide = currentSlide + 1;
-const prevSlide = currentSlide - 1;
+const nextSlideIndex =
+  currentSlideIndex < PAGES.length ? currentSlideIndex + 1 : null;
+const prevSlideIndex = currentSlideIndex > 1 ? currentSlideIndex - 1 : null;
 ---
 
 <html lang="en">
@@ -23,22 +24,32 @@ const prevSlide = currentSlide - 1;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>Profiling</title>
-	<ViewTransitions />
+    <ViewTransitions />
   </head>
   <body class="text-base">
-    <div class="h-screen w-screen flex flex-col items-center justify-between p-4">
-	{ title ? (
-	  <Heading>{title}</Heading>
-	) : <div></div>}
-		<div transition:animate="fade" class="">
-			<slot />
-		</div>
+    <div
+      class="h-screen w-screen flex flex-col items-center justify-between p-4"
+    >
+      {title ? <Heading>{title}</Heading> : <div />}
+      <div transition:animate="fade" class="">
+        <slot />
+      </div>
       <div class="flex justify-between w-fit gap-4">
-		{ prevSlide > 0 && (
-        <a href=`/slide-${prevSlide}` class="text-sm text-gray-500">Previous</a>
-		)}
+        {
+          prevSlideIndex && (
+            <a href={`/slides/${prevSlideIndex}`} class="text-sm text-gray-500">
+              Previous
+            </a>
+          )
+        }
 
-        <a href=`/slide-${nextSlide}` class="text-sm text-gray-500">Next</a>
+        {
+          nextSlideIndex && (
+            <a href={`/slides/${nextSlideIndex}`} class="text-sm text-gray-500">
+              Next
+            </a>
+          )
+        }
       </div>
     </div>
   </body>
