@@ -10,7 +10,8 @@ export default defineConfig({
   integrations: [tailwind()],
   output: 'server',
   prefetch: {
-    defaultStrategy: 'viewport'
+    prefetchAll: true,
+    defaultStrategy: 'load',
   },
   adapter: cloudflare()
 });
