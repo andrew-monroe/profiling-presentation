@@ -4,16 +4,16 @@ export default {
 	theme: {
 		extend: {},
 			fontSize: {
-			  'xs': '0.875rem',    // 14px
-			  'sm': '1rem',        // 16px
-			  'base': '1.125rem',  // 18px
-			  'lg': '1.25rem',     // 20px
-			  'xl': '1.5rem',      // 24px
-			  '2xl': '1.875rem',   // 30px
-			  '3xl': '2.25rem',    // 36px
-			  '4xl': '3rem',       // 48px
-			  '5xl': '4rem',       // 64px
-			  '6xl': '5rem',       // 80px
+			  'xs': '1.125rem',    // 18px
+			  'sm': '1.25rem',     // 20px
+			  'base': '1.5rem',    // 24px
+			  'lg': '1.875rem',    // 30px
+			  'xl': '2.25rem',     // 36px
+			  '2xl': '3rem',       // 48px
+			  '3xl': '4rem',       // 64px
+			  '4xl': '5rem',       // 80px
+			  '5xl': '6rem',       // 96px
+			  '6xl': '8rem',       // 128px
 			},
 	},
 	plugins: [],

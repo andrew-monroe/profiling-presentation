@@ -25,7 +25,7 @@ const prevSlide = currentSlide - 1;
     <title>Profiling</title>
 	<ViewTransitions />
   </head>
-  <body>
+  <body class="text-base">
     <div class="h-screen w-screen flex flex-col items-center justify-between p-4">
 	{ title ? (
 	  <Heading>{title}</Heading>
@@ -33,7 +33,7 @@ const prevSlide = currentSlide - 1;
 		<div transition:animate="fade" class="">
 			<slot />
 		</div>
-      <div class="flex justify-between w-fit gap-2">
+      <div class="flex justify-between w-fit gap-4">
 		{ prevSlide > 0 && (
         <a href=`/slide-${prevSlide}` class="text-sm text-gray-500">Previous</a>
 		)}
