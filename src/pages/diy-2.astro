@@ -1,0 +1,22 @@
+---
+import Code from "../components/Code.astro";
+import Slide from "../layouts/Slide.astro";
+---
+
+<Slide title="DIY!">
+  <Code>
+    docker compose run --rm -e DJANGO_SETTINGS_MODULE=canary.settings.test django \
+    <br />
+    bash -c "\
+    <br />
+    pip install py-spy && \
+    <br />
+    py-spy record -o flamegraph.svg --format speedscope -- \
+    <br />
+    pytest --nomigrations check_out"
+  </Code>
+  <br />
+  <p class="text-center text-lg">
+    Then view at <a class="underline text-blue-600" href="https://www.speedscope.app/">speedscope.app</a>
+  </p>
+</Slide>
